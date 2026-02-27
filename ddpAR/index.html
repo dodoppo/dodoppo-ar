@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <!-- モバイルでのズームやブレを防止 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AR Experience - Figure Walk</title>
+    <style>
+        :root {
+            --primary-color: #007aff;
+            --warning-bg: #fff3cd;
+            --warning-text: #856404;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: var(--bg-color);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: #333;
+            /* タップ時のハイライトや誤操作を防止 */
+            touch-action: manipulation;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            background: var(--card-bg);
+            padding: 40px 20px;
+            border-radius: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #1d1d1f;
+        }
+
+        /* 音声注意書きのパネル */
+        .audio-alert {
+            background-color: var(--warning-bg);
+            color: var(--warning-text);
+            padding: 16px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(133, 100, 4, 0.1);
+        }
+
+        .audio-alert strong {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 4px;
+            color: #d32f2f;
+        }
+
+        .audio-alert p {
+            margin: 0;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        /* AR起動ボタン（リンク） */
+        .ar-trigger {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 240px;
+            height: 64px;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            border-radius: 32px;
+            font-size: 18px;
+            font-weight: 600;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 8px 16px rgba(0, 122, 255, 0.3);
+            margin-bottom: 20px;
+        }
+
+        /* タップ時の視覚効果 */
+        .ar-trigger:active {
+            transform: scale(0.96);
+            box-shadow: 0 4px 8px rgba(0, 122, 255, 0.2);
+        }
+
+        .icon-ar {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        .instructions {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .footer-note {
+            margin-top: 15px;
+            font-size: 11px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>dodoppoAR</h1>
+        
+        <!-- マナーモード解除のお願い -->
+        <div class="audio-alert">
+            <strong>⚠️ 音楽が流れます</strong>
+            <p>マナーモードを解除し、<br>音量を上げてから開始してください。</p>
+        </div>
+
+        <!-- 
+            💡Safariのクラッシュを避けるため、<img>を使わずCSSボタンにしています。
+            rel="ar" を付与することで、SafariはこのリンクをAR Quick Lookとして扱います。
+        -->
+        <a href="ddp_walk.reality" rel="ar" class="ar-trigger">
+            <span class="icon-ar"></span> ARを起動する
+        </a>
+        
+        <div class="instructions">
+            <p>ボタンをタップして、<br>カメラを明るい床に向けてください。</p>
+        </div>
+
+        <p class="footer-note">iOS / iPadOS の Safari または Chrome で動作します</p>
+    </div>
+
+</body>
+</html>
